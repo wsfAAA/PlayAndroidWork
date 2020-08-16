@@ -9,9 +9,8 @@ import okhttp3.Interceptor;
 import okhttp3.Response;
 
 /**
- * Created by wsf on 2019/2/5.  添加cookies到本地
+ * Created by wsf on 2018/2/5.  添加cookies到本地
  */
-
 public class AddCookiesInterceptor implements Interceptor {
 
     public static final String COOKIES = "COOKIES";

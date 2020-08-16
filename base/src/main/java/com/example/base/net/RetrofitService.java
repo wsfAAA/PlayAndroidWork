@@ -24,25 +24,12 @@ public interface RetrofitService {
     @GET
     Call<String> get(@Url String url, @QueryMap WeakHashMap<String, Object> params);
 
-    @GET
-    Call<String> get(@Url String url);
-
     @FormUrlEncoded
     @POST
     Call<String> post(@Url String url, @FieldMap WeakHashMap<String, Object> params);
 
     @POST
     Call<String> postRaw(@Url String url, @Body RequestBody body);
-
-    @FormUrlEncoded
-    @PUT
-    Call<String> put(@Url String url, @FieldMap WeakHashMap<String, Object> params);
-
-    @PUT
-    Call<String> putRaw(@Url String url, @Body RequestBody body);
-
-    @DELETE
-    Call<String> delete(@Url String url, @QueryMap WeakHashMap<String, Object> params);
 
     @Streaming
     @GET

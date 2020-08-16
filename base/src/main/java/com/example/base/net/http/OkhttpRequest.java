@@ -263,7 +263,7 @@ public class OkhttpRequest implements IHttpRequest {
     private void writeResponseBodyToDisk(final ResponseBody responseBody, final long range, final String downloadUrl,
                                          final String download_path, final String download_file_name,
                                          final DownloadListener downloadListener) {
-        //创建单一线程池（线程里面只有一个线程，如果该线程意外死亡，那么系统会自动创建一个新的线程来代替）
+        //创建单一线程池
         ExecutorService singlePool = ThreadUtils.getSinglePool();
         singlePool.execute(new Runnable() {
             @Override
