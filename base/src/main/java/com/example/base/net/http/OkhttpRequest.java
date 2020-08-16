@@ -163,7 +163,7 @@ public class OkhttpRequest implements IHttpRequest {
         application.startService(intent);
     }
 
-    /////////////////////////////////////////// retrofit 配合 rxjava 请求  ////////////////////////////////////
+    /********************************** retrofit 配合 rxjava 请求 **************************************/
     public void request(HttpMethod method, String url, final RxCallBack rxCallBack) {
         RxService rxService = getRxService();
         Observable<String> observable = null;
@@ -340,55 +340,54 @@ public class OkhttpRequest implements IHttpRequest {
         });
     }
 
-
-    /////////////////////////////////////////// retrofit 请求  ////////////////////////////////////
-    public void retrofitrequest(HttpMethod method, String url, final RxCallBack rxCallBack) {
-        RetrofitService retrofitService = getRetrofitService();
-        Call<String> call = null;
-        switch (method) {
-            case GET:
-                call = retrofitService.get(url, PARAMS);
-                break;
-            case POST:
-                call = retrofitService.post(url, PARAMS);
-                break;
-            case POST_RAW:
-                call = retrofitService.postRaw(url, BODY);
-                break;
-            case UPLOAD:
-                final RequestBody requestBody =
-                        RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()), FILE);
-                final MultipartBody.Part body =
-                        MultipartBody.Part.createFormData("file", FILE.getName(), requestBody);
-                call = retrofitService.upload(url, body);
-                break;
-            default:
-                break;
-        }
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (response != null && !TextUtils.isEmpty(response.body())) {
-                    String body = response.body();
-                    if (rxCallBack.mType == String.class) {
-                        rxCallBack.rxOnNext(body);
-                    } else {
-                        try {
-                            rxCallBack.rxOnNext(new Gson().fromJson(body, rxCallBack.mType));
-                        } catch (Exception e) {
-                        }
-                    }
-                } else {
-                    rxCallBack.rxOnError(new Throwable("response is null or response.body() is null "));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable throwable) {
-                rxCallBack.rxOnError(throwable);
-            }
-        });
-    }
+    /********************************** retrofit 请求 **************************************/
+//    public void retrofitrequest(HttpMethod method, String url, final RxCallBack rxCallBack) {
+//        RetrofitService retrofitService = getRetrofitService();
+//        Call<String> call = null;
+//        switch (method) {
+//            case GET:
+//                call = retrofitService.get(url, PARAMS);
+//                break;
+//            case POST:
+//                call = retrofitService.post(url, PARAMS);
+//                break;
+//            case POST_RAW:
+//                call = retrofitService.postRaw(url, BODY);
+//                break;
+//            case UPLOAD:
+//                final RequestBody requestBody =
+//                        RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()), FILE);
+//                final MultipartBody.Part body =
+//                        MultipartBody.Part.createFormData("file", FILE.getName(), requestBody);
+//                call = retrofitService.upload(url, body);
+//                break;
+//            default:
+//                break;
+//        }
+//        call.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                if (response != null && !TextUtils.isEmpty(response.body())) {
+//                    String body = response.body();
+//                    if (rxCallBack.mType == String.class) {
+//                        rxCallBack.rxOnNext(body);
+//                    } else {
+//                        try {
+//                            rxCallBack.rxOnNext(new Gson().fromJson(body, rxCallBack.mType));
+//                        } catch (Exception e) {
+//                        }
+//                    }
+//                } else {
+//                    rxCallBack.rxOnError(new Throwable("response is null or response.body() is null "));
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable throwable) {
+//                rxCallBack.rxOnError(throwable);
+//            }
+//        });
+//    }
 
     private RetrofitService getRetrofitService() {
         Retrofit.Builder retrofitBuilde = RxCreator.getRetrofitBuilde();

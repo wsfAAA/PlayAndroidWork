@@ -10,6 +10,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.example.base.net.RxClient;
 import com.example.base.net.api.ApiService;
 import com.example.base.net.callback.RxCallBack;
+import com.example.base.net.http.OkhttpRequest;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -21,16 +22,16 @@ public class TestActivity extends AppCompatActivity {
         findViewById(R.id.git).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RxClient.builder().build().rxGet(ApiService.BANNER, new RxCallBack<String>() {
+                RxClient.builder().addHttpRequest(new OkhttpRequest()).build().rxGet(ApiService.BANNER, new RxCallBack<String>() {
                     @Override
                     public void rxOnNext(String response) {
-                        Log.e("wsf",response);
+                        Log.e("wsf", response);
                         ToastUtils.showShort(response);
                     }
 
                     @Override
                     public void rxOnError(Throwable e) {
-                        Log.e("wsf","rxOnError:  "+e.getMessage());
+                        Log.e("wsf", "rxOnError:  " + e.getMessage());
                     }
                 });
             }

@@ -5,8 +5,8 @@ package com.example.base.net.api;
  */
 public class ApiService {
 
-    public static final String BASE_URL = "https://wanandroid.com/";
+    public static final String BASE_URL = "http://wanandroid.com/";
 
     //https://www.wanandroid.com/banner/json
-    public static final String BANNER = "/banner/json";    //banner
+    public static final String BANNER = "banner/json";    //banner
 }
