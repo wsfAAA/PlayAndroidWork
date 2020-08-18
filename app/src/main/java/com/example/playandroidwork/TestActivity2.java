@@ -12,12 +12,12 @@ import com.example.base.net.api.ApiService;
 import com.example.base.net.callback.RxCallBack;
 import com.example.base.net.http.OkhttpRequest;
 
-public class TestActivity extends AppCompatActivity {
+public class TestActivity2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_test2);
 
         findViewById(R.id.git).setOnClickListener(new View.OnClickListener() {
             @Override

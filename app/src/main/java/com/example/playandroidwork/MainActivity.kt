@@ -3,12 +3,8 @@ package com.example.playandroidwork
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import com.blankj.utilcode.util.ToastUtils
-import com.example.base.net.RxClient
-import com.example.base.net.api.ApiService
-import com.example.base.net.callback.RxCallBack
+import com.example.playandroidwork.test.TestActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +13,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btn1.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(this,TestActivity::class.java))
+            startActivity(Intent(this,
+                TestActivity2::class.java))
         })
+
+        btn2.setOnClickListener {
+            startActivity(Intent(this,
+                TestActivity::class.java))
+        }
     }
 }
