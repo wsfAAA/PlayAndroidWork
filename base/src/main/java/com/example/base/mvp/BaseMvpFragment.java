@@ -12,12 +12,10 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewbinding.ViewBinding;
 
-public abstract class BaseMvpFragment<T extends ViewBinding> extends Fragment implements BaseView {
+public abstract class BaseMvpFragment extends Fragment implements BaseView {
 
     protected Context mContext;
-    protected T viewBinding;
     private List<BasePresenter> mPresenters = new ArrayList<>();
 
     @Override
@@ -29,15 +27,23 @@ public abstract class BaseMvpFragment<T extends ViewBinding> extends Fragment im
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewBinding = getViewBinding();
+        View view = inflater.inflate(getLayoutId(), container, false);
         mPresenters = MvpUtil.initPresenter(this);
-        initView();
-        return viewBinding.getRoot();
+        initView(view);
+        return view;
     }
 
-    protected abstract void initView();
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initData();
+    }
 
-    protected abstract T getViewBinding();
+    protected abstract void initView(View view);
+
+    protected abstract void initData();
+
+    protected abstract int getLayoutId();
 
 
     @Override
@@ -47,6 +53,7 @@ public abstract class BaseMvpFragment<T extends ViewBinding> extends Fragment im
             presenter.detach();  // 解绑
         }
     }
+
 
 //    /**
 //     * 通过反射 获取 Presenter

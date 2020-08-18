@@ -4,35 +4,25 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
-import androidx.viewbinding.ViewBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseMvpActivity<T extends ViewBinding> extends FragmentActivity implements BaseView {
+public abstract class BaseMvpActivity extends FragmentActivity implements BaseView {
+
     private List<BasePresenter> mPresenters = new ArrayList<>();
-    protected T viewBinding;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initViewBefore();
-        viewBinding = getViewBinding();
-        setContentView(viewBinding.getRoot());
+        setContentView(getLayoutId());
         mPresenters = MvpUtil.initPresenter(this);
         initView();
     }
 
     protected abstract void initView();
 
-    protected abstract T getViewBinding();
-
-
-    /**
-     * 初始化view 之前
-     */
-    protected void initViewBefore() {
-    }
+    protected abstract int getLayoutId();
 
     @Override
     public void onDestroy() {
