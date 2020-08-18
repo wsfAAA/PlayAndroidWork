@@ -2,12 +2,12 @@ package com.example.base.mvp;
 
 import android.os.Bundle;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewbinding.ViewBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BaseMvpActivity<T extends ViewBinding> extends FragmentActivity implements BaseView {
     private List<BasePresenter> mPresenters = new ArrayList<>();
@@ -26,6 +26,7 @@ public abstract class BaseMvpActivity<T extends ViewBinding> extends FragmentAct
     protected abstract void initView();
 
     protected abstract T getViewBinding();
+
 
     /**
      * 初始化view 之前

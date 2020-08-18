@@ -6,12 +6,12 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.base.mvp.BaseMvpActivity;
 import com.example.base.mvp.InjectPresenter;
 import com.example.playandroidwork.databinding.ActivityTestBinding;
-import com.example.playandroidwork.test.contract.TestViewContract;
+import com.example.playandroidwork.test.contract.TestContract;
 
 /**
  * BaseMvpActivity 使用
  */
-public class TestActivity extends BaseMvpActivity<ActivityTestBinding> implements TestViewContract {
+public class TestActivity extends BaseMvpActivity<ActivityTestBinding> implements TestContract.TestView {
 
     @InjectPresenter
     TestPresenter testPresenter;
@@ -34,7 +34,7 @@ public class TestActivity extends BaseMvpActivity<ActivityTestBinding> implement
     }
 
     @Override
-    public void setTest(String message) {
-        viewBinding.tvTextTest.setText(message + "   activity测试数据");
+    public void text(String data) {
+        viewBinding.tvTextTest.setText(data + "   activity测试数据");
     }
 }
