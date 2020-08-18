@@ -18,7 +18,6 @@ public class TestActivity extends BaseMvpActivity<ActivityTestBinding> implement
     @InjectPresenter
     TestPresenterTow testPresenterTow;
 
-
     @Override
     protected void initView() {
         viewBinding.tvContent.setText(testPresenterTow.getTest() + "  activity测试数据");
