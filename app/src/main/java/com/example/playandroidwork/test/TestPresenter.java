@@ -4,7 +4,7 @@ package com.example.playandroidwork.test;
 import com.example.base.mvp.BasePresenter;
 import com.example.playandroidwork.test.contract.TestContract;
 
-public class TestPresenter extends BasePresenter<TestActivity> implements TestContract.TestPresenter {
+public class TestPresenter extends BasePresenter<TestContract.TestView> implements TestContract.TestPresenter {
 
     @Override
     public void getTest() {
