@@ -1,0 +1,1 @@
+java版本的viewbing的使用，base里面的mvp做了优化去除了model，只留下view和persenter

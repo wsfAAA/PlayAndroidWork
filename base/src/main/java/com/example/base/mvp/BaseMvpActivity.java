@@ -21,6 +21,7 @@ public abstract class BaseMvpActivity<T extends ViewBinding> extends FragmentAct
         setContentView(viewBinding.getRoot());
         mPresenters = MvpUtil.initPresenter(this);
         initView();
+
     }
 
     protected abstract void initView();
