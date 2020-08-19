@@ -1,4 +1,4 @@
-package com.example.playandroidwork.test.contract;
+package com.example.playandroidwork.mvptest.contract;
 
 import com.example.base.mvp.BaseView;
 

@@ -1,4 +1,4 @@
-package com.example.playandroidwork.test;
+package com.example.playandroidwork.mvptest;
 
 
 import android.view.View;

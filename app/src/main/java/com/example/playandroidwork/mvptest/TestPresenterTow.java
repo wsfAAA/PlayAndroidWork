@@ -1,4 +1,4 @@
-package com.example.playandroidwork.test;
+package com.example.playandroidwork.mvptest;
 
 
 import com.example.base.mvp.BasePresenter;

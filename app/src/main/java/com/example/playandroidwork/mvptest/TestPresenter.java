@@ -1,8 +1,8 @@
-package com.example.playandroidwork.test;
+package com.example.playandroidwork.mvptest;
 
 
 import com.example.base.mvp.BasePresenter;
-import com.example.playandroidwork.test.contract.TestContract;
+import com.example.playandroidwork.mvptest.contract.TestContract;
 
 public class TestPresenter extends BasePresenter<TestContract.TestView> implements TestContract.TestPresenter {
 

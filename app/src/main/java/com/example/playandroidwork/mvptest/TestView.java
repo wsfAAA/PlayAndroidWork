@@ -1,4 +1,4 @@
-package com.example.playandroidwork.test;
+package com.example.playandroidwork.mvptest;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -1,4 +1,4 @@
-package com.example.playandroidwork;
+package com.example.playandroidwork.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,13 +11,14 @@ import com.example.base.net.RxClient;
 import com.example.base.net.api.ApiService;
 import com.example.base.net.callback.RxCallBack;
 import com.example.base.net.http.OkhttpRequest;
+import com.example.playandroidwork.R;
 
-public class TestActivity2 extends AppCompatActivity {
+public class NetActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test2);
+        setContentView(R.layout.activity_net);
 
         findViewById(R.id.git).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,4 +1,4 @@
-package com.example.playandroidwork.test;
+package com.example.playandroidwork.mvptest;
 
 
 import android.widget.TextView;
@@ -9,7 +9,7 @@ import com.example.base.mvp.BaseMvpActivity;
 import com.example.base.mvp.InjectPresenter;
 import com.example.base.view.StatusView;
 import com.example.playandroidwork.R;
-import com.example.playandroidwork.test.contract.TestContract;
+import com.example.playandroidwork.mvptest.contract.TestContract;
 
 /**
  * BaseMvpActivity 使用
@@ -46,7 +46,7 @@ public class TestActivity extends BaseMvpActivity implements TestContract.TestVi
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_test;
+        return R.layout.activity_mvptest;
     }
 
     @Override

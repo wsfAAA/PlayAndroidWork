@@ -1,10 +1,11 @@
-package com.example.playandroidwork
+package com.example.playandroidwork.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.playandroidwork.test.TestActivity
+import com.example.playandroidwork.R
+import com.example.playandroidwork.mvptest.TestActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         btn1.setOnClickListener(View.OnClickListener {
             startActivity(Intent(this,
-                TestActivity2::class.java))
+                NetActivity::class.java))
         })
 
         btn2.setOnClickListener {
