@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="indicator_start_color" format="color"/>
+    <attr name="indicator_end_color" format="color"/>
+
+    <attr name="indicator_color_style" format="enum">
+        <enum name="LEFTRIGHT" value="2"/>
+        <enum name="TOPBOTTOM" value="1"/>
+        <enum name="NORMAL" value="0"/>
+    </attr>
+
+    <!-- 设置显示器margin,当indicator_width大于0,无效 -->
+    <attr name="tl_indicator_margin_left" format="dimension"/>
+    <attr name="tl_indicator_margin_top" format="dimension"/>
+    <attr name="tl_indicator_margin_right" format="dimension"/>
+    <attr name="tl_indicator_margin_bottom" format="dimension"/>
+
+    <!-- 设置显示器圆角弧度-->
+    <attr name="indicator_corner_radius" format="dimension"/>
+
+    <declare-styleable name="TabViewLayout">
+        <!-- indicator -->
+        <attr name="indicator_start_color" />
+        <attr name="indicator_end_color" />
+        <attr name="indicator_color_style"/>
+        <attr name="indicator_corner_radius"/>
+    </declare-styleable>
+</resources>
