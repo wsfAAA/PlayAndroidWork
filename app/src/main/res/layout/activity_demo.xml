@@ -29,4 +29,13 @@
         app:tl_indicator_width="10dp"
         app:tl_textsize="14sp" />
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/dp_10"
+        android:id="@+id/recycler"
+        android:layout_marginLeft="@dimen/dp_13"
+        android:layout_marginRight="@dimen/dp_13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>
