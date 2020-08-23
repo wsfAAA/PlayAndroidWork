@@ -1,5 +1,6 @@
 package com.example.playandroidwork.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -106,10 +107,42 @@ public class DemoActivity extends AppCompatActivity {
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                Log.e("wsf", position + "  " + data.size());
+//                Log.e("wsf", position + "  " + data.size());
                 return position == data.size() - 1 ? 2 : 1;
             }
         });
+
+
+        ArrayList<Integer> newdata = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            newdata.add(i);
+        }
+
+        RecyclerView recycler = findViewById(R.id.recycler_view);
+        recycler.setLayoutManager(new GridLayoutManager(this, 7));
+        recycler.setAdapter(new TestAdapterTow(newdata));
+    }
+
+
+    public class TestAdapterTow extends BaseQuickAdapter<Integer, BaseViewHolder> {
+
+        public TestAdapterTow(@Nullable List<Integer> data) {
+            super(R.layout.test_adapter_tow_item_layout, data);
+        }
+
+        @Override
+        protected void convert(@NotNull BaseViewHolder holder, Integer s) {
+            holder.setText(R.id.tv_content, "" + s);
+            Log.e("wsf", holder.getAdapterPosition() + "  " + getData().size());
+
+            holder.setVisible(R.id.view_line, true);
+            if (holder.getAdapterPosition() < 3) {
+                holder.setBackgroundColor(R.id.view_line, getResources().getColor(R.color.orchid));
+            } else {
+                holder.setBackgroundColor(R.id.view_line, getResources().getColor(R.color.black));
+            }
+
+        }
     }
 
 
