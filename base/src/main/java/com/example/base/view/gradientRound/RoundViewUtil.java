@@ -44,7 +44,7 @@ public class RoundViewUtil {
 
         // 渐变角度
         GradientDrawable.Orientation bgOrientation = getOrientation(bgGradientAngle);
-        return new BackgroundPress(bgOrientation, bgOrientation, borderWidth, borderColor, radius, bgColors, bgColors);
+        return new BackgroundPress(bgOrientation, borderWidth, borderColor, radius, bgColors);
     }
 
     /**

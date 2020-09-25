@@ -74,7 +74,7 @@ public class GradientLinearlayout extends LinearLayoutCompat {
         }
 
         bgOrientation = getOrientation(bgGradientAngle);// 渐变角度
-        this.setBackground(new BackgroundPress(bgOrientation, bgOrientation, borderWidth, borderColor, radius, bgColors, bgColors));
+        this.setBackground(new BackgroundPress(bgOrientation, borderWidth, borderColor, radius, bgColors));
     }
 
 
@@ -87,7 +87,7 @@ public class GradientLinearlayout extends LinearLayoutCompat {
     public void setBorder(int borderColor, int borderWidth) {
         this.borderColor = borderColor;
         this.borderWidth = ConvertUtils.dp2px(borderWidth);
-        this.setBackground(new BackgroundPress(bgOrientation, bgOrientation, borderWidth, borderColor, radius, bgColors, bgColors));
+        this.setBackground(new BackgroundPress(bgOrientation, borderWidth, borderColor, radius, bgColors));
     }
 
     /**
@@ -108,7 +108,7 @@ public class GradientLinearlayout extends LinearLayoutCompat {
             bgColors = new int[]{bgColor, bgColor};
         }
         bgOrientation = getOrientation(bgGradientAngle);  // 渐变角度
-        this.setBackground(new BackgroundPress(bgOrientation, bgOrientation, borderWidth, borderColor, radius, bgColors, bgColors));
+        this.setBackground(new BackgroundPress(bgOrientation, borderWidth, borderColor, radius, bgColors));
     }
 
     /**
@@ -119,7 +119,7 @@ public class GradientLinearlayout extends LinearLayoutCompat {
     public void setBgColor(int bgcolor) {
         this.bgColor = bgcolor;
         bgColors = new int[]{bgColor, bgColor};
-        this.setBackground(new BackgroundPress(bgOrientation, bgOrientation, borderWidth, borderColor, radius, bgColors, bgColors));
+        this.setBackground(new BackgroundPress(bgOrientation, borderWidth, borderColor, radius, bgColors));
     }
 
     /**
@@ -134,7 +134,7 @@ public class GradientLinearlayout extends LinearLayoutCompat {
         this.rightBottomRadius = ConvertUtils.dp2px(cornerRadius);
         this.leftBottomRadius = ConvertUtils.dp2px(cornerRadius);
         radius = new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius};
-        this.setBackground(new BackgroundPress(bgOrientation, bgOrientation, borderWidth, borderColor, radius, bgColors, bgColors));
+        this.setBackground(new BackgroundPress(bgOrientation, borderWidth, borderColor, radius, bgColors));
     }
 
     /**
@@ -151,7 +151,7 @@ public class GradientLinearlayout extends LinearLayoutCompat {
         this.rightBottomRadius = rightBottomRadius;
         this.leftBottomRadius = leftBottomRadius;
         radius = new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius};
-        this.setBackground(new BackgroundPress(bgOrientation, bgOrientation, borderWidth, borderColor, radius, bgColors, bgColors));
+        this.setBackground(new BackgroundPress(bgOrientation, borderWidth, borderColor, radius, bgColors));
     }
 
     /**

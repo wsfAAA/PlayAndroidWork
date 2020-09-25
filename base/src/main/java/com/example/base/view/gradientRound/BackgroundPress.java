@@ -5,7 +5,7 @@ import android.graphics.drawable.StateListDrawable;
 
 public class BackgroundPress extends StateListDrawable {
 
-    public BackgroundPress(GradientDrawable.Orientation bgOrientation, GradientDrawable.Orientation pressOrientation, int borderWidth, int borderColor, float[] radius, int[] ints, int[] intsPress) {
+    public BackgroundPress(GradientDrawable.Orientation bgOrientation, int borderWidth, int borderColor, float[] radius, int[] ints) {
         BackgroundShape normalDrawable = new BackgroundShape(
                 bgOrientation,
                 radius,
@@ -15,16 +15,6 @@ public class BackgroundPress extends StateListDrawable {
                 borderColor
         );
 
-        BackgroundShape pressedDrawable = new BackgroundShape(
-                pressOrientation,
-                radius,
-                intsPress[0],
-                intsPress[1],
-                borderWidth,
-                borderColor
-        );
-
-        addState(new int[]{android.R.attr.state_pressed}, pressedDrawable);
         addState(new int[]{}, normalDrawable);
     }
 }
