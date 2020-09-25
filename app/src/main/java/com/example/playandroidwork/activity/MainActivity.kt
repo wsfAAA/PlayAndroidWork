@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 //                NetActivity::class.java))
 
             startActivity(Intent(this,
-                DemoActivity::class.java))
+                GradientRoundActivity::class.java))
         })
 
         btn2.setOnClickListener {
