@@ -11,7 +11,7 @@
         android:id="@+id/btn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="网络请求" />
+        android:text="代码实现shape功能" />
 
     <Button
         android:id="@+id/btn2"

@@ -1,9 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.base.view.GradientLinearlayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:id="@+id/root"
+    app:bgColor="#fff"
+    android:gravity="center"
+    app:cornerRadius="10dp"
     tools:context=".activity.GradientRoundActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.example.base.view.GradientTextView
+        android:id="@+id/tv_bgColor"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="背景色"
+        android:textColor="#fff"
+        app:bgColor="#f45" />
+
+    <com.example.base.view.GradientTextView
+        android:id="@+id/tv_radius"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="圆角"
+        android:textColor="#fff"
+        app:bgColor="#f45"
+        app:cornerRadius="10dp" />
+
+    <com.example.base.view.GradientTextView
+        android:id="@+id/tv_leftTopRadius"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="设置左边圆角"
+        android:textColor="#fff"
+        app:bgColor="#f45"
+        app:leftTopRadius="10dp" />
+
+    <com.example.base.view.GradientTextView
+        android:id="@+id/tv_bgGradient"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="背景渐变"
+        android:textColor="#fff"
+        app:bgColorEnd="#000"
+        app:bgColorStart="#f45"
+        app:bgGradientAngle="180" />
+
+    <com.example.base.view.GradientTextView
+        android:id="@+id/tv_border"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="边框"
+        android:textColor="#fff"
+        app:bgColor="#f45"
+        app:borderColor="#000"
+        app:borderWidth="2dp" />
+
+</com.example.base.view.GradientLinearlayout>

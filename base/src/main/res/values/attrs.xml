@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--以下属性默认透明色，0-->
+    <declare-styleable name="GradientRound">
+        <!--背景色-->
+        <attr name="bgColor" format="color" />
+
+        <!--背景色渐变角度,默认-1 不生效-->
+        <attr name="bgGradientAngle" format="integer" />
+        <!--渐变初始色-->
+        <attr name="bgColorStart" format="color" />
+        <!--渐变结束色-->
+        <attr name="bgColorEnd" format="color" />
+
+        <!--边框颜色-->
+        <attr name="borderColor" format="color" />
+        <!--边框宽度-->
+        <attr name="borderWidth" format="dimension" />
+
+        <!--圆角 -->
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="leftTopRadius" format="dimension" />
+        <attr name="rightTopRadius" format="dimension" />
+        <attr name="leftBottomRadius" format="dimension" />
+        <attr name="rightBottomRadius" format="dimension" />
+    </declare-styleable>
+
+    <!-- 可清空编辑框属性 -->
+    <declare-styleable name="ETWithDelete">
+        <attr name="delSrc" format="reference" />
+        <attr name="edit_text_type" format="enum">
+            <enum name="DELETE" value="0"/>
+            <enum name="LOOK" value="1"/>
+        </attr>
+    </declare-styleable>
+
+</resources>
