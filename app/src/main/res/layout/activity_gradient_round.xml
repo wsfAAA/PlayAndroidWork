@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     android:id="@+id/root"
-    app:bgColor="#fff"
+    app:bgColor="#0df"
     android:gravity="center"
     app:cornerRadius="10dp"
     tools:context=".activity.GradientRoundActivity">
