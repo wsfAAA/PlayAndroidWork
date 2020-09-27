@@ -148,10 +148,10 @@ public class GradientTextView extends AppCompatTextView {
      * @param leftBottomRadius
      */
     public void setRadius(int leftTopRadius, int rightTopRadius, int rightBottomRadius, int leftBottomRadius) {
-        this.leftTopRadius = leftTopRadius;
-        this.rightTopRadius = rightTopRadius;
-        this.rightBottomRadius = rightBottomRadius;
-        this.leftBottomRadius = leftBottomRadius;
+        this.leftTopRadius = ConvertUtils.dp2px(leftTopRadius);
+        this.rightTopRadius = ConvertUtils.dp2px(rightTopRadius);
+        this.rightBottomRadius = ConvertUtils.dp2px(rightBottomRadius);
+        this.leftBottomRadius = ConvertUtils.dp2px(leftBottomRadius);
         radius = new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius};
         this.setBackground(new BackgroundPress(bgOrientation, borderWidth, borderColor, radius, bgColors));
     }
