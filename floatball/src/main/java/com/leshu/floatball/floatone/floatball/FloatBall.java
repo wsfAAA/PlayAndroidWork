@@ -1,4 +1,4 @@
-package com.leshu.floatball.floatball;
+package com.leshu.floatball.floatone.floatball;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,14 +14,14 @@ import android.widget.ImageView;
 
 import com.buyi.huxq17.serviceagency.ServiceAgency;
 import com.buyi.huxq17.serviceagency.exception.AgencyException;
-import com.leshu.floatball.FloatBallManager;
-import com.leshu.floatball.FloatBallUtil;
-import com.leshu.floatball.LocationService;
-import com.leshu.floatball.runner.ICarrier;
-import com.leshu.floatball.runner.OnceRunnable;
-import com.leshu.floatball.runner.ScrollRunner;
-import com.leshu.floatball.utils.MotionVelocityUtil;
-import com.leshu.floatball.utils.Util;
+import com.leshu.floatball.floatone.FloatBallManager;
+import com.leshu.floatball.floatone.FloatBallUtil;
+import com.leshu.floatball.floatone.LocationService;
+import com.leshu.floatball.floatone.runner.ICarrier;
+import com.leshu.floatball.floatone.runner.OnceRunnable;
+import com.leshu.floatball.floatone.runner.ScrollRunner;
+import com.leshu.floatball.floatone.utils.MotionVelocityUtil;
+import com.leshu.floatball.floatone.utils.Util;
 
 public class FloatBall extends FrameLayout implements ICarrier {
 

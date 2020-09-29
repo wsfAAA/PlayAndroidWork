@@ -1,4 +1,4 @@
-package com.leshu.floatball.menu;
+package com.leshu.floatball.floatone.menu;
 
 import android.graphics.drawable.Drawable;
 

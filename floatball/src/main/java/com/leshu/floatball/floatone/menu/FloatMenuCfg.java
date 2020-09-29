@@ -1,4 +1,4 @@
-package com.leshu.floatball.menu;
+package com.leshu.floatball.floatone.menu;
 
 public class FloatMenuCfg {
     public int mSize;

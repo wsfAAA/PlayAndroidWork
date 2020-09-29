@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_custom_recharge_record"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:src="@mipmap/icon_recharge_jl" />
+
+    <TextView
+        android:id="@+id/tv_float_popup_protect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-10dp"
+        android:text="充值记录"
+        android:textColor="#333333"
+        android:textSize="15dp" />
+
+</LinearLayout>

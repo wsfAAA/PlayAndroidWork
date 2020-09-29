@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ll_ico"
+        android:layout_width="47dp"
+        android:layout_height="47dp"
+        android:layout_centerVertical="true" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="105dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_layout_left"
+        android:layout_width="229dp"
+        android:layout_height="105dp"
+        android:layout_toRightOf="@+id/ll_ico"
+        android:visibility="visible"
+        android:layout_marginLeft="7dp"
+        android:background="@mipmap/icon_float_bg"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <include
+            layout="@layout/ls_sdk_float_include_account_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginLeft="10dp"
+             />
+
+        <include
+            layout="@layout/ls_sdk_include_recharge_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="top" />
+
+    </LinearLayout>
+
+</RelativeLayout>

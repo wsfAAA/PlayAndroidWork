@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.leshu.floatball.menu;
+package com.leshu.floatball.floatone.menu;
 
 import android.app.Activity;
 import android.content.Context;
@@ -29,8 +29,8 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.leshu.floatball.FloatBallManager;
-import com.leshu.floatball.FloatBallUtil;
+import com.leshu.floatball.floatone.FloatBallManager;
+import com.leshu.floatball.floatone.FloatBallUtil;
 
 
 public class FloatMenu extends FrameLayout {

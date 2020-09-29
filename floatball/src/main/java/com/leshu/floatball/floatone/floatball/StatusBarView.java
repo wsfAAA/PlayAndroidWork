@@ -1,12 +1,12 @@
-package com.leshu.floatball.floatball;
+package com.leshu.floatball.floatone.floatball;
 
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.leshu.floatball.FloatBallManager;
-import com.leshu.floatball.FloatBallUtil;
+import com.leshu.floatball.floatone.FloatBallManager;
+import com.leshu.floatball.floatone.FloatBallUtil;
 
 public class StatusBarView extends View {
 

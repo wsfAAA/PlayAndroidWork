@@ -6,19 +6,23 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.playandroidwork.R;
-import com.leshu.floatball.FloatBallManager;
-import com.leshu.floatball.floatball.FloatBallCfg;
-import com.leshu.floatball.menu.FloatMenuCfg;
-import com.leshu.floatball.menu.MenuItem;
-import com.leshu.floatball.utils.BackGroudSeletor;
-import com.leshu.floatball.utils.DensityUtil;
+import com.leshu.floatball.floatone.FloatBallManager;
+import com.leshu.floatball.floatone.floatball.FloatBallCfg;
+import com.leshu.floatball.floatone.menu.FloatMenuCfg;
+import com.leshu.floatball.floatone.menu.MenuItem;
+import com.leshu.floatball.floatone.utils.BackGroudSeletor;
+import com.leshu.floatball.floatone.utils.DensityUtil;
+import com.leshu.floatball.floattow.FloatView;
+import com.leshu.floatball.floattow.onMenuClick;
 
 public class FloatBallActivity extends AppCompatActivity {
 
     private FloatBallManager mFloatballManager;
+    private FloatView mFloatView;
 
     public void showFloatBall(View v) {
 //        mFloatballManager.show();
@@ -29,6 +33,28 @@ public class FloatBallActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_float_ball);
+        oneFloat();
+
+        towFloat();
+    }
+
+    private void towFloat() {
+        Button button = findViewById(R.id.bt_tow);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (button.getText().toString().equals("打开悬浮框")) {
+                    button.setText("关闭悬浮框");
+                    openFloat(FloatBallActivity.this);
+                } else {
+                    button.setText("打开悬浮框");
+                    closeFloat();
+                }
+            }
+        });
+    }
+
+    private void oneFloat() {
         boolean showMenu = true;//换成false试试
         initSinglePageFloatball(showMenu);
         //5 如果没有添加菜单，可以设置悬浮球点击事件
@@ -129,6 +155,31 @@ public class FloatBallActivity extends AppCompatActivity {
                 .addMenuItem(walletItem)
                 .addMenuItem(settingItem)
                 .buildMenu();
+    }
+
+    public void openFloat(AppCompatActivity activity) {
+        if (activity == null) {
+            return;
+        }
+        mFloatView = new FloatView(activity, R.mipmap.ic_launcher_round);
+        mFloatView.setOnMenuClick(new onMenuClick() {
+            @Override
+            public void onAccountInfo() {
+
+            }
+
+            @Override
+            public void onRechargeRecord() {
+
+            }
+        });
+    }
+
+    public void closeFloat() {
+        if (mFloatView != null) {
+            mFloatView.removeView();
+            mFloatView = null;
+        }
     }
 
 

@@ -1,4 +1,4 @@
-package com.leshu.floatball;
+package com.leshu.floatball.floatone;
 
 import android.app.Activity;
 import android.content.Context;

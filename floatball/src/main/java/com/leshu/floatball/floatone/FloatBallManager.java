@@ -1,4 +1,4 @@
-package com.leshu.floatball;
+package com.leshu.floatball.floatone;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,12 +8,12 @@ import android.os.Build;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.leshu.floatball.floatball.FloatBall;
-import com.leshu.floatball.floatball.FloatBallCfg;
-import com.leshu.floatball.floatball.StatusBarView;
-import com.leshu.floatball.menu.FloatMenu;
-import com.leshu.floatball.menu.FloatMenuCfg;
-import com.leshu.floatball.menu.MenuItem;
+import com.leshu.floatball.floatone.floatball.FloatBall;
+import com.leshu.floatball.floatone.floatball.FloatBallCfg;
+import com.leshu.floatball.floatone.floatball.StatusBarView;
+import com.leshu.floatball.floatone.menu.FloatMenu;
+import com.leshu.floatball.floatone.menu.FloatMenuCfg;
+import com.leshu.floatball.floatone.menu.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
