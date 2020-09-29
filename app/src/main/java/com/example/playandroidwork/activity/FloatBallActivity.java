@@ -1,13 +1,13 @@
 package com.example.playandroidwork.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.playandroidwork.R;
 import com.leshu.floatball.floatone.FloatBallManager;
@@ -17,12 +17,13 @@ import com.leshu.floatball.floatone.menu.MenuItem;
 import com.leshu.floatball.floatone.utils.BackGroudSeletor;
 import com.leshu.floatball.floatone.utils.DensityUtil;
 import com.leshu.floatball.floattow.FloatView;
+import com.leshu.floatball.floattow.TestFloatView;
 import com.leshu.floatball.floattow.onMenuClick;
 
 public class FloatBallActivity extends AppCompatActivity {
 
     private FloatBallManager mFloatballManager;
-    private FloatView mFloatView;
+    private TestFloatView mFloatView;
 
     public void showFloatBall(View v) {
 //        mFloatballManager.show();
@@ -161,7 +162,7 @@ public class FloatBallActivity extends AppCompatActivity {
         if (activity == null) {
             return;
         }
-        mFloatView = new FloatView(activity, R.mipmap.ic_launcher_round);
+        mFloatView = new TestFloatView(activity, R.mipmap.ic_launcher_round);
         mFloatView.setOnMenuClick(new onMenuClick() {
             @Override
             public void onAccountInfo() {

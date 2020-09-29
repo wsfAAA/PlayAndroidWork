@@ -9,9 +9,9 @@
         android:layout_height="47dp"
         android:layout_centerVertical="true" />
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="105dp"/>
+<!--    <View-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="105dp"/>-->
 
     <LinearLayout
         android:id="@+id/ll_layout_left"
