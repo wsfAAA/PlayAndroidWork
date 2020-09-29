@@ -44,11 +44,11 @@ public class FloatBallActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (button.getText().toString().equals("打开悬浮框")) {
+                if (button.getText().toString().equals("悬浮球2")) {
                     button.setText("关闭悬浮框");
                     openFloat(FloatBallActivity.this);
                 } else {
-                    button.setText("打开悬浮框");
+                    button.setText("悬浮球2");
                     closeFloat();
                 }
             }

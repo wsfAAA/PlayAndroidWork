@@ -9,19 +9,22 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import com.leshu.floatball.R;
+import com.leshu.floatball.floatone.utils.DensityUtil;
 
 import java.lang.ref.WeakReference;
 
 public class TestFloatView extends LinearLayout implements View.OnTouchListener, View.OnClickListener {
     private WindowManager.LayoutParams windowManagerParams = new WindowManager.LayoutParams();
     private WindowManager mWindowManager;
-    private Activity mActivity;
+    private Context mContext;
 
     private int floatIcon;//默认的悬浮球图片
     private int defaultSpeed = 60;//控制球的移动速度
@@ -38,28 +41,62 @@ public class TestFloatView extends LinearLayout implements View.OnTouchListener,
     private static final int MOVE_SLOWLL = 2;
     private static final int MOVE_SLOWLR = 3;
 
-    private int mFloatViewWidth, mFloatViewHeiht;  //悬浮框按钮宽高
-    private int mRightWidth = 0; //悬浮框展开宽度
-    private int mRightHeight = 0; //悬浮框展开高度
-
     private boolean isLeftOrRight = false;//区分左边还是右边
     private boolean isHide;   //是否靠边隐藏
 
-    private View mLeftView;  //悬浮框展开的view
-    private ImageView mFloatIcoView;
-    private RIghtFloatImage rIghtWinImage;   //右边视图
     private MyHandler mHandler;
+    private ImageView mFloatIcoView;
+    private int mFloatViewWidth;
+    private int mFloatViewHeiht;
 
     public TestFloatView(Activity context, int floatIcon) {
         super(context);
-        mActivity = context;
-        initView(context);
+        mContext = context;
+        mFloatIcoView = new ImageView(context);
 
         this.floatIcon = floatIcon;
+        mFloatIcoView.setImageResource(floatIcon);
+//        mFloatIcoView.setOnTouchListener(this);
+
+        LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.width = DensityUtil.dip2px(context, 47);
+        layoutParams.height = DensityUtil.dip2px(context, 47);
+        mFloatIcoView.setLayoutParams(layoutParams);
+        mFloatIcoView.setOnClickListener(onClickListener);
+        this.addView(mFloatIcoView);
+
         screenWidth = context.getResources().getDisplayMetrics().widthPixels;
         screenHeight = context.getResources().getDisplayMetrics().heightPixels;
         addFloat(context);
     }
+
+    private PopupWindow popupWindow;
+    private View.OnClickListener onClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            View view = View.inflate(mContext, R.layout.ls_sdk_float_view_right, null);
+            if (popupWindow != null && popupWindow.isShowing()) {
+                popupWindow.dismiss();
+            } else {
+                popupWindow = new PopupWindow(mContext);
+				/*popupWindow.setFocusable(true);
+				popupWindow.setOutsideTouchable(true);
+				popupWindow.setBackgroundDrawable(new BitmapDrawable());*/
+                popupWindow.setClippingEnabled(false);
+                //popupWindow.showAsDropDown(v);
+//                if (isRight) {
+//                    popupView.setBackgroundResource(Utils.getDrawable(context, "dropzonebg"));
+//                    popupWindow.showAtLocation(floatView, Gravity.RIGHT, floatView.getWidth(), 0);
+//                } else {
+//                    popupView.setPadding(Utils.dip2px(context, 10), 0, 0, 0);
+//                    popupView.setBackgroundResource(Utils.getDrawable(context, "dropzonebg_left"));
+//                    popupWindow.showAtLocation(floatView, Gravity.LEFT, floatView.getWidth(), 0);
+//                }
+                popupWindow.setContentView(view);
+                popupWindow.showAtLocation(mFloatIcoView, Gravity.RIGHT, mFloatIcoView.getWidth(), 0);
+            }
+        }
+    };
 
     /**
      * 添加悬浮框
@@ -96,11 +133,10 @@ public class TestFloatView extends LinearLayout implements View.OnTouchListener,
             // 显示FloatView悬浮球
             mWindowManager.addView(this, windowManagerParams);
 
-//        hideFolat();
             hideFloatHalfof();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            Log.e("wsf", "addFloat this:  "+e.toString());
+            Log.e("wsf", "addFloat this:  " + e.toString());
         }
     }
 
@@ -123,63 +159,51 @@ public class TestFloatView extends LinearLayout implements View.OnTouchListener,
                 int yMove = Math.abs((int) (event.getY() - getY));
                 if (xMove > 10 || yMove > 10) {
                     //x轴或y轴方向的移动距离大于5个像素，视为拖动，否则视为点击
-                    if (mLeftView.getVisibility() == GONE) {//显示的时候不能移动
-                        removeHideHandleFloat();
-                        isMove = true;
-                        int x, y;
-                        x = oldRawX - getX;
-                        y = oldRawY - getY;
-                        if (x < 0)//处理越界屏幕问题
-                            x = 0;
-                        if (x > screenWidth - mFloatViewWidth)
-                            x = screenWidth - mFloatViewWidth;
+//                    if (mLeftView.getVisibility() == GONE) {//菜单显示的时候不能移动
+                    removeHideHandleFloat();
+                    isMove = true;
+                    int x, y;
+                    x = oldRawX - getX;
+                    y = oldRawY - getY;
+                    if (x < 0)//处理越界屏幕问题
+                        x = 0;
+                    if (x > screenWidth - mFloatViewWidth)
+                        x = screenWidth - mFloatViewWidth;
 
-                        if (y < 0)
-                            y = 0;
-                        if (y > screenHeight - mFloatViewHeiht - mFloatViewWidth / 2)
-                            y = screenHeight - mFloatViewHeiht - mFloatViewWidth / 2;
+                    if (y < 0)
+                        y = 0;
+                    if (y > screenHeight - mFloatViewHeiht - mFloatViewWidth / 2)
+                        y = screenHeight - mFloatViewHeiht - mFloatViewWidth / 2;
 
-                        moveView(x, y);
-                        Log.e("wsf", "x  : " + x + "    Y  :" + y + "   oldRawY:" + oldRawY+"     getY: "+getY);
-                    }
+                    moveView(x, y);
+//                    }
                 }
                 break;
 
             case MotionEvent.ACTION_UP:
-                if (isMove) {
-                    isMove = false;
-                    final Message message = new Message();
-                    message.what = MOVE_SLOWLL;
-                    message.arg1 = oldRawX - getX;
-                    message.arg2 = oldRawY - getY;
-                    mHandler.sendMessageDelayed(message, 10);
-                } else {
-                    //普通的点击事件
-                    if (isHide) {//是否半边隐藏,如果是先移出来,在执行接下来的操作
-                        if (isLeftOrRight) {
-                            moveHalfView(screenWidth - mFloatViewWidth);
-                        } else {
-                            moveHalfView(0);
-                        }
-                    }
-
-                    if (isLeftOrRight) {
-                        rIghtWinImage = new RIghtFloatImage(screenWidth - mRightWidth, mOnMenuClick, mActivity, mWindowManager, windowManagerParams, floatIcon);
-                        rIghtWinImage.setMenuDismiss(() -> {
-                            //点击消失的时候
-//                                hideFolat();
-                            hideFloatHalfof();
-                            rIghtWinImage = null;
-                        });
-
-                        mHandler.postDelayed(() -> {
-                            //移出来之后在消失,而不是马上消失效果
-                            mFloatIcoView.setVisibility(INVISIBLE);
-                        }, 18);
-                    } else {
-                        controlIco();
-                    }
-                }
+//                if (isMove) {
+//                    isMove = false;
+//                    final Message message = new Message();
+//                    message.what = MOVE_SLOWLL;
+//                    message.arg1 = oldRawX - getX;
+//                    message.arg2 = oldRawY - getY;
+//                    mHandler.sendMessageDelayed(message, 10);
+//                } else {
+//                    //普通的点击事件
+//                    if (isHide) {//是否半边隐藏,如果是先移出来,在执行接下来的操作
+//                        if (isLeftOrRight) {
+//                            moveHalfView(screenWidth - mFloatViewWidth);
+//                        } else {
+//                            moveHalfView(0);
+//                        }
+//                    }
+//
+//                    if (isLeftOrRight) {
+//
+//                    } else {
+//                        controlIco();
+//                    }
+//                }
                 break;
         }
         return true;
@@ -193,23 +217,21 @@ public class TestFloatView extends LinearLayout implements View.OnTouchListener,
      */
     public void moveView(int delatX, int deltaY) {
         try {
-            //        Log.e("wsf", "结束的位置" + delatX + ":" + deltaY);
             if (deltaY < 0) {
                 deltaY = 0;
             }
-            if (deltaY > screenHeight - mRightHeight)
-                deltaY = screenHeight - mRightHeight;
+            if (deltaY > screenHeight - mFloatViewHeiht)
+                deltaY = screenHeight - mFloatViewHeiht;
 
             windowManagerParams.x = delatX;
             windowManagerParams.y = deltaY;
             mWindowManager.updateViewLayout(this, windowManagerParams);   // 更新floatView
 
             if (delatX == 0 || delatX == screenWidth - mFloatViewWidth) {//移动达到了屏幕的边缘
-//            hideFolat();
                 hideFloatHalfof();
             }
             isHide = false;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -224,8 +246,7 @@ public class TestFloatView extends LinearLayout implements View.OnTouchListener,
             windowManagerParams.x = delatX;
             mWindowManager.updateViewLayout(this, windowManagerParams); // 更新floatView
             isHide = true;
-//        Log.e("wsf", " //更新屏幕半边view位置:" + delatX);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -247,12 +268,6 @@ public class TestFloatView extends LinearLayout implements View.OnTouchListener,
                     case MOVE_SLOWLR:
                         floatView.controlIco();
                         break;
-
-//                    case KEEP_TO_SIDE:  //三秒之后图片变暗
-//                        floatView.mFloatIcoView.setImageResource(floatView.darkResource);
-//                        floatView.hideFloatHalfof();
-//                        break;
-
                     case HIDE://半边隐藏
                         if (floatView.isLeftOrRight) {//右边
                             floatView.moveHalfView(floatView.screenWidth - floatView.mFloatViewWidth / 2);
@@ -294,47 +309,9 @@ public class TestFloatView extends LinearLayout implements View.OnTouchListener,
                 }
             }
         }
+
     }
 
-    private void initView(Context context) {
-        View view = View.inflate(context, R.layout.ls_sdk_float_view_left, null);
-        mFloatIcoView = (ImageView) view.findViewById(R.id.ll_ico);
-        mLeftView = (View) view.findViewById(R.id.ll_layout_left);
-        mFloatIcoView.setOnTouchListener(this);
-        if (mRightWidth == 0) {
-            mLeftView.setVisibility(INVISIBLE);
-            ViewTreeObserver vto = view.getViewTreeObserver();
-            vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                public boolean onPreDraw() {
-                    if (mRightWidth == 0) {
-                        mRightWidth = view.getMeasuredWidth();
-                        mRightHeight = view.getMeasuredHeight();
-                        mLeftView.setVisibility(GONE);
-                        mFloatViewWidth = mFloatIcoView.getMeasuredWidth();
-//                        Log.e("wsf", "成功:" + mRightWidth);
-                    }
-                    return true;
-                }
-            });
-        }
-        view.findViewById(R.id.ll_custom_account_info).setOnClickListener(this);
-        view.findViewById(R.id.ll_custom_recharge_record).setOnClickListener(this);
-        this.addView(view);
-    }
-
-
-//    /**
-//     * 变成半透明状态
-//     */
-//    public void hideFolat() {
-//        if (mFloatIcoView.getVisibility() == INVISIBLE) {
-//            mFloatIcoView.setVisibility(VISIBLE);
-//        }
-//        if (!isMove && mHandler != null) {//移动的时候不触发功能
-//            mHandler.removeMessages(KEEP_TO_SIDE);
-//            mHandler.sendEmptyMessageDelayed(KEEP_TO_SIDE, 2000);
-//        }
-//    }
 
     /**
      * 自动隐藏悬浮框菜单 倒计时
@@ -350,9 +327,6 @@ public class TestFloatView extends LinearLayout implements View.OnTouchListener,
      * 启动移动到半边计时器
      */
     public void hideFloatHalfof() {
-        if (mFloatIcoView.getVisibility() == INVISIBLE) {
-            mFloatIcoView.setVisibility(VISIBLE);
-        }
         mFloatIcoView.setImageResource(floatIcon);
         if (mHandler != null && !isMove) { //移动的时候不触发功能
             mHandler.removeMessages(HIDE);
@@ -368,9 +342,6 @@ public class TestFloatView extends LinearLayout implements View.OnTouchListener,
 
     private void removeHideHandleFloat() {
         if (mHandler != null) {
-//            mHandler.removeMessages(KEEP_TO_SIDE);
-//            mHandler.removeMessages(MOVE_SLOWLR);
-//            mHandler.removeMessages(HIDE);
             mHandler.removeCallbacksAndMessages(null);
         }
     }
@@ -378,26 +349,23 @@ public class TestFloatView extends LinearLayout implements View.OnTouchListener,
     public void removeView() {
         try {
             removeHideHandleFloat();
-            if (rIghtWinImage != null) {
-                rIghtWinImage.remoView();
-            }
             mWindowManager.removeView(this);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            Log.e("wsf", "removeView this:  "+e.toString());
+            Log.e("wsf", "removeView this:  " + e.toString());
         }
     }
 
     public void controlIco() {
-        if (mLeftView.getVisibility() == GONE) {
-            mLeftView.setVisibility(VISIBLE);
-            hideFloatMenu();
-        } else {
-            mLeftView.setVisibility(GONE);
-            cancelHideFloatMenu();
-//            hideFolat();
-            hideFloatHalfof();
-        }
+//        if (mLeftView.getVisibility() == GONE) {
+//            mLeftView.setVisibility(VISIBLE);
+//            hideFloatMenu();
+//        } else {
+//            mLeftView.setVisibility(GONE);
+//            cancelHideFloatMenu();
+////            hideFolat();
+//            hideFloatHalfof();
+//        }
     }
 
     private onMenuClick mOnMenuClick;
