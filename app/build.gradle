@@ -42,5 +42,6 @@ dependencies {
     api rootProject.ext.dependencies["constraintlayout"]
 
     implementation project(':base')
+    implementation project(':floatball')
 
 }

@@ -1,3 +1,4 @@
+include ':floatball'
 include ':base'
 include ':app'
 rootProject.name = "PlayAndroidWork"

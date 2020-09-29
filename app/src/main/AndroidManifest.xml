@@ -13,8 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.DemoActivity"></activity>
-        <activity android:name=".activity.GradientRoundActivity"></activity>
+        <activity android:name=".activity.FloatBallActivity"></activity>
+        <activity android:name=".activity.DemoActivity" />
+        <activity android:name=".activity.GradientRoundActivity" />
         <activity android:name=".activity.NetActivity" />
         <activity android:name=".mvptest.TestActivity" />
         <activity android:name=".activity.MainActivity">

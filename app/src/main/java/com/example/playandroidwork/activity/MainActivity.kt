@@ -50,5 +50,14 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        btn4.setOnClickListener {
+            startActivity(
+                Intent(
+                    this,
+                    FloatBallActivity::class.java
+                )
+            )
+        }
+
     }
 }
