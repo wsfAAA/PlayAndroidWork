@@ -7,6 +7,7 @@
         android:id="@+id/ll_ico"
         android:layout_width="47dp"
         android:layout_height="47dp"
+        android:visibility="gone"
         android:layout_centerVertical="true" />
 
 <!--    <View-->

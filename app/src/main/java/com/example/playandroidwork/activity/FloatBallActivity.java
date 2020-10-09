@@ -1,10 +1,13 @@
 package com.example.playandroidwork.activity;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +19,7 @@ import com.leshu.floatball.floatone.menu.FloatMenuCfg;
 import com.leshu.floatball.floatone.menu.MenuItem;
 import com.leshu.floatball.floatone.utils.BackGroudSeletor;
 import com.leshu.floatball.floatone.utils.DensityUtil;
-import com.leshu.floatball.floattow.FloatView;
+import com.leshu.floatball.floattow.FloatManager;
 import com.leshu.floatball.floattow.TestFloatView;
 import com.leshu.floatball.floattow.onMenuClick;
 
@@ -24,6 +27,8 @@ public class FloatBallActivity extends AppCompatActivity {
 
     private FloatBallManager mFloatballManager;
     private TestFloatView mFloatView;
+    private PopupWindow popupWindow;
+    private View viewById;
 
     public void showFloatBall(View v) {
 //        mFloatballManager.show();
@@ -37,6 +42,31 @@ public class FloatBallActivity extends AppCompatActivity {
         oneFloat();
 
         towFloat();
+
+    }
+
+    private void test() {
+        View view = View.inflate(this, com.leshu.floatball.R.layout.ls_sdk_float_view_right, null);
+        if (popupWindow != null && popupWindow.isShowing()) {
+            popupWindow.dismiss();
+        } else {
+            popupWindow = new PopupWindow(this);
+//            popupWindow.setFocusable(true);
+//            popupWindow.setOutsideTouchable(true);
+//            popupWindow.setBackgroundDrawable(new BitmapDrawable());
+            popupWindow.setClippingEnabled(false);
+//                if (isRight) {
+//                    popupView.setBackgroundResource(Utils.getDrawable(context, "dropzonebg"));
+//                    popupWindow.showAtLocation(floatView, Gravity.RIGHT, floatView.getWidth(), 0);
+//                } else {
+//                    popupView.setPadding(Utils.dip2px(context, 10), 0, 0, 0);
+//                    popupView.setBackgroundResource(Utils.getDrawable(context, "dropzonebg_left"));
+//                    popupWindow.showAtLocation(floatView, Gravity.LEFT, floatView.getWidth(), 0);
+//                }
+            popupWindow.setContentView(view);
+//            popupWindow.showAsDropDown(viewById, Gravity.BOTTOM,0,0);
+            popupWindow.showAsDropDown(viewById);
+        }
     }
 
     private void towFloat() {
@@ -44,12 +74,15 @@ public class FloatBallActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                test();
                 if (button.getText().toString().equals("悬浮球2")) {
                     button.setText("关闭悬浮框");
-                    openFloat(FloatBallActivity.this);
+//                    openFloat(FloatBallActivity.this);
+                    FloatManager.getFloatManager(FloatBallActivity.this).createView();
                 } else {
                     button.setText("悬浮球2");
-                    closeFloat();
+//                    closeFloat();
+                    FloatManager.getFloatManager(FloatBallActivity.this).destroyFloat();
                 }
             }
         });
@@ -74,7 +107,8 @@ public class FloatBallActivity extends AppCompatActivity {
                 mFloatballManager.hide();
             }
         });
-        findViewById(R.id.bt).setOnClickListener(new View.OnClickListener() {
+        viewById = findViewById(R.id.bt);
+        viewById.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mFloatballManager.show();
@@ -163,17 +197,6 @@ public class FloatBallActivity extends AppCompatActivity {
             return;
         }
         mFloatView = new TestFloatView(activity, R.mipmap.ic_launcher_round);
-        mFloatView.setOnMenuClick(new onMenuClick() {
-            @Override
-            public void onAccountInfo() {
-
-            }
-
-            @Override
-            public void onRechargeRecord() {
-
-            }
-        });
     }
 
     public void closeFloat() {
